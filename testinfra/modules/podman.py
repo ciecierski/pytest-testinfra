@@ -27,6 +27,8 @@ class Podman(Module):
     '7e67dc7495ca8f451d346b775890bdc0fb561ecdc97b68fb59ff2f77b509a8fe'
     >>> nginx.name
     'app_nginx'
+    >>> nginx.imagename
+    'docker.io/library/nginx:latest'
     """
 
     def __init__(self, name):
@@ -48,6 +50,10 @@ class Podman(Module):
     @property
     def name(self):
         return self.inspect()["Name"]
+
+    @property
+    def imagename(self):
+        return self.inspect()["ImageName"]
 
     @classmethod
     def get_containers(cls, **filters):
